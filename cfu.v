@@ -9,38 +9,36 @@ module Cfu(cmd_ready, cmd_payload_function_id, cmd_payload_inputs_0, cmd_payload
   wire [31:0] \$signal ;
   (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:251" *)
   wire \$signal$1 ;
-  (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:250" *)
-  wire [31:0] \$signal$10 ;
   (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:251" *)
-  wire \$signal$11 ;
+  wire \$signal$10 ;
   (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:252" *)
-  reg \$signal$13 ;
+  reg \$signal$12 ;
   (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:250" *)
-  wire [31:0] \$signal$14 ;
+  wire [31:0] \$signal$13 ;
   (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:251" *)
-  wire \$signal$15 ;
+  wire \$signal$14 ;
   (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:252" *)
-  reg \$signal$17 ;
+  reg \$signal$16 ;
   (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:250" *)
-  wire [31:0] \$signal$18 ;
+  wire [31:0] \$signal$17 ;
   (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:251" *)
-  wire \$signal$19 ;
+  wire \$signal$18 ;
   (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:252" *)
   reg \$signal$2 ;
   (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:252" *)
-  reg \$signal$21 ;
+  reg \$signal$20 ;
   (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:250" *)
-  wire [31:0] \$signal$22 ;
+  wire [31:0] \$signal$21 ;
   (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:251" *)
-  wire \$signal$23 ;
+  wire \$signal$22 ;
   (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:252" *)
-  reg \$signal$25 ;
+  reg \$signal$24 ;
   (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:250" *)
-  wire [31:0] \$signal$26 ;
+  wire [31:0] \$signal$25 ;
   (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:251" *)
-  wire \$signal$27 ;
+  wire \$signal$26 ;
   (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:252" *)
-  reg \$signal$29 ;
+  reg \$signal$28 ;
   (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:250" *)
   wire [31:0] \$signal$3 ;
   (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:251" *)
@@ -52,7 +50,9 @@ module Cfu(cmd_ready, cmd_payload_function_id, cmd_payload_inputs_0, cmd_payload
   (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:251" *)
   wire \$signal$7 ;
   (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:252" *)
-  reg \$signal$9 ;
+  reg \$signal$8 ;
+  (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:250" *)
+  wire [31:0] \$signal$9 ;
   (* src = "/home/dev/CFU-Playground/third_party/python/amaranth/amaranth/hdl/ir.py:527" *)
   input clk;
   wire clk;
@@ -75,14 +75,6 @@ module Cfu(cmd_ready, cmd_payload_function_id, cmd_payload_inputs_0, cmd_payload
   reg current_function_done;
   (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:245" *)
   reg [2:0] current_function_id;
-  (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:53" *)
-  wire fallback1_done;
-  (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:48" *)
-  wire [31:0] fallback1_in0;
-  (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:49" *)
-  wire [31:0] fallback1_in1;
-  (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:51" *)
-  wire [31:0] fallback1_output;
   (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:53" *)
   wire fallback2_done;
   (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:48" *)
@@ -141,6 +133,16 @@ module Cfu(cmd_ready, cmd_payload_function_id, cmd_payload_inputs_0, cmd_payload
   wire [31:0] fn0_output;
   (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:52" *)
   wire fn0_start;
+  (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:53" *)
+  wire fn1_done;
+  (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:48" *)
+  wire [31:0] fn1_in0;
+  (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:49" *)
+  wire [31:0] fn1_in1;
+  (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:51" *)
+  wire [31:0] fn1_output;
+  (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:52" *)
+  wire fn1_start;
   (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:272" *)
   reg [1:0] fsm_state = 2'h0;
   (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:272" *)
@@ -149,6 +151,8 @@ module Cfu(cmd_ready, cmd_payload_function_id, cmd_payload_inputs_0, cmd_payload
   wire [2:0] funct3;
   (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:239" *)
   wire [6:0] funct7;
+  (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:50" *)
+  wire [6:0] \funct7$29 ;
   (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:50" *)
   wire [6:0] \funct7$30 ;
   (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:50" *)
@@ -163,8 +167,6 @@ module Cfu(cmd_ready, cmd_payload_function_id, cmd_payload_inputs_0, cmd_payload
   wire [6:0] \funct7$35 ;
   (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:50" *)
   wire [6:0] \funct7$36 ;
-  (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:50" *)
-  wire [6:0] \funct7$37 ;
   (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:192" *)
   input [31:0] port0_addr;
   wire [31:0] port0_addr;
@@ -207,17 +209,15 @@ module Cfu(cmd_ready, cmd_payload_function_id, cmd_payload_inputs_0, cmd_payload
   (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:52" *)
   wire start;
   (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:52" *)
-  wire \start$12 ;
+  wire \start$11 ;
   (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:52" *)
-  wire \start$16 ;
+  wire \start$15 ;
   (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:52" *)
-  wire \start$20 ;
+  wire \start$19 ;
   (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:52" *)
-  wire \start$24 ;
+  wire \start$23 ;
   (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:52" *)
-  wire \start$28 ;
-  (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:52" *)
-  wire \start$8 ;
+  wire \start$27 ;
   (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:244" *)
   reg [2:0] stored_function_id = 3'h0;
   (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:244" *)
@@ -232,12 +232,6 @@ module Cfu(cmd_ready, cmd_payload_function_id, cmd_payload_inputs_0, cmd_payload
     fsm_state <= \fsm_state$next ;
   always @(posedge clk)
     stored_output <= \stored_output$next ;
-  fallback1 fallback1 (
-    .done(fallback1_done),
-    .in0(fallback1_in0),
-    .in1(fallback1_in1),
-    .\output (fallback1_output)
-  );
   fallback2 fallback2 (
     .done(fallback2_done),
     .in0(fallback2_in0),
@@ -283,6 +277,15 @@ module Cfu(cmd_ready, cmd_payload_function_id, cmd_payload_inputs_0, cmd_payload
     .rst(rst),
     .start(fn0_start)
   );
+  fn1 fn1 (
+    .clk(clk),
+    .done(fn1_done),
+    .in0(fn1_in0),
+    .in1(fn1_in1),
+    .\output (fn1_output),
+    .rst(rst),
+    .start(fn1_start)
+  );
   always @* begin
     if (\$auto$verilog_backend.cc:2097:dump_module$1 ) begin end
     current_function_id = 3'h0;
@@ -316,15 +319,15 @@ module Cfu(cmd_ready, cmd_payload_function_id, cmd_payload_inputs_0, cmd_payload
             3'h2:
                 current_function_done = \$signal$7 ;
             3'h3:
-                current_function_done = \$signal$11 ;
+                current_function_done = \$signal$10 ;
             3'h4:
-                current_function_done = \$signal$15 ;
+                current_function_done = \$signal$14 ;
             3'h5:
-                current_function_done = \$signal$19 ;
+                current_function_done = \$signal$18 ;
             3'h6:
-                current_function_done = \$signal$23 ;
+                current_function_done = \$signal$22 ;
             3'h?:
-                current_function_done = \$signal$27 ;
+                current_function_done = \$signal$26 ;
           endcase
       /* \amaranth.decoding  = "WAIT_INSTRUCTION/2" */
       /* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:284" */
@@ -339,15 +342,15 @@ module Cfu(cmd_ready, cmd_payload_function_id, cmd_payload_inputs_0, cmd_payload
             3'h2:
                 current_function_done = \$signal$7 ;
             3'h3:
-                current_function_done = \$signal$11 ;
+                current_function_done = \$signal$10 ;
             3'h4:
-                current_function_done = \$signal$15 ;
+                current_function_done = \$signal$14 ;
             3'h5:
-                current_function_done = \$signal$19 ;
+                current_function_done = \$signal$18 ;
             3'h6:
-                current_function_done = \$signal$23 ;
+                current_function_done = \$signal$22 ;
             3'h?:
-                current_function_done = \$signal$27 ;
+                current_function_done = \$signal$26 ;
           endcase
     endcase
   end
@@ -387,12 +390,12 @@ module Cfu(cmd_ready, cmd_payload_function_id, cmd_payload_inputs_0, cmd_payload
     if (\$auto$verilog_backend.cc:2097:dump_module$1 ) begin end
     \$signal$2  = 1'h0;
     \$signal$5  = 1'h0;
-    \$signal$9  = 1'h0;
-    \$signal$13  = 1'h0;
-    \$signal$17  = 1'h0;
-    \$signal$21  = 1'h0;
-    \$signal$25  = 1'h0;
-    \$signal$29  = 1'h0;
+    \$signal$8  = 1'h0;
+    \$signal$12  = 1'h0;
+    \$signal$16  = 1'h0;
+    \$signal$20  = 1'h0;
+    \$signal$24  = 1'h0;
+    \$signal$28  = 1'h0;
     (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:272" *)
     casez (fsm_state)
       /* \amaranth.decoding  = "WAIT_CMD/0" */
@@ -410,17 +413,17 @@ module Cfu(cmd_ready, cmd_payload_function_id, cmd_payload_inputs_0, cmd_payload
                   3'h1:
                       \$signal$5  = 1'h1;
                   3'h2:
-                      \$signal$9  = 1'h1;
+                      \$signal$8  = 1'h1;
                   3'h3:
-                      \$signal$13  = 1'h1;
+                      \$signal$12  = 1'h1;
                   3'h4:
-                      \$signal$17  = 1'h1;
+                      \$signal$16  = 1'h1;
                   3'h5:
-                      \$signal$21  = 1'h1;
+                      \$signal$20  = 1'h1;
                   3'h6:
-                      \$signal$25  = 1'h1;
+                      \$signal$24  = 1'h1;
                   3'h?:
-                      \$signal$29  = 1'h1;
+                      \$signal$28  = 1'h1;
                 endcase
           endcase
     endcase
@@ -485,15 +488,15 @@ module Cfu(cmd_ready, cmd_payload_function_id, cmd_payload_inputs_0, cmd_payload
                         3'h2:
                             rsp_payload_outputs_0 = \$signal$6 ;
                         3'h3:
-                            rsp_payload_outputs_0 = \$signal$10 ;
+                            rsp_payload_outputs_0 = \$signal$9 ;
                         3'h4:
-                            rsp_payload_outputs_0 = \$signal$14 ;
+                            rsp_payload_outputs_0 = \$signal$13 ;
                         3'h5:
-                            rsp_payload_outputs_0 = \$signal$18 ;
+                            rsp_payload_outputs_0 = \$signal$17 ;
                         3'h6:
-                            rsp_payload_outputs_0 = \$signal$22 ;
+                            rsp_payload_outputs_0 = \$signal$21 ;
                         3'h?:
-                            rsp_payload_outputs_0 = \$signal$26 ;
+                            rsp_payload_outputs_0 = \$signal$25 ;
                       endcase
                 endcase
           endcase
@@ -514,15 +517,15 @@ module Cfu(cmd_ready, cmd_payload_function_id, cmd_payload_inputs_0, cmd_payload
                   3'h2:
                       rsp_payload_outputs_0 = \$signal$6 ;
                   3'h3:
-                      rsp_payload_outputs_0 = \$signal$10 ;
+                      rsp_payload_outputs_0 = \$signal$9 ;
                   3'h4:
-                      rsp_payload_outputs_0 = \$signal$14 ;
+                      rsp_payload_outputs_0 = \$signal$13 ;
                   3'h5:
-                      rsp_payload_outputs_0 = \$signal$18 ;
+                      rsp_payload_outputs_0 = \$signal$17 ;
                   3'h6:
-                      rsp_payload_outputs_0 = \$signal$22 ;
+                      rsp_payload_outputs_0 = \$signal$21 ;
                   3'h?:
-                      rsp_payload_outputs_0 = \$signal$26 ;
+                      rsp_payload_outputs_0 = \$signal$25 ;
                 endcase
           endcase
       /* \amaranth.decoding  = "WAIT_TRANSFER/1" */
@@ -635,15 +638,15 @@ module Cfu(cmd_ready, cmd_payload_function_id, cmd_payload_inputs_0, cmd_payload
                               3'h2:
                                   \stored_output$next  = \$signal$6 ;
                               3'h3:
-                                  \stored_output$next  = \$signal$10 ;
+                                  \stored_output$next  = \$signal$9 ;
                               3'h4:
-                                  \stored_output$next  = \$signal$14 ;
+                                  \stored_output$next  = \$signal$13 ;
                               3'h5:
-                                  \stored_output$next  = \$signal$18 ;
+                                  \stored_output$next  = \$signal$17 ;
                               3'h6:
-                                  \stored_output$next  = \$signal$22 ;
+                                  \stored_output$next  = \$signal$21 ;
                               3'h?:
-                                  \stored_output$next  = \$signal$26 ;
+                                  \stored_output$next  = \$signal$25 ;
                             endcase
                       endcase
                 endcase
@@ -673,15 +676,15 @@ module Cfu(cmd_ready, cmd_payload_function_id, cmd_payload_inputs_0, cmd_payload
                         3'h2:
                             \stored_output$next  = \$signal$6 ;
                         3'h3:
-                            \stored_output$next  = \$signal$10 ;
+                            \stored_output$next  = \$signal$9 ;
                         3'h4:
-                            \stored_output$next  = \$signal$14 ;
+                            \stored_output$next  = \$signal$13 ;
                         3'h5:
-                            \stored_output$next  = \$signal$18 ;
+                            \stored_output$next  = \$signal$17 ;
                         3'h6:
-                            \stored_output$next  = \$signal$22 ;
+                            \stored_output$next  = \$signal$21 ;
                         3'h?:
-                            \stored_output$next  = \$signal$26 ;
+                            \stored_output$next  = \$signal$25 ;
                       endcase
                 endcase
           endcase
@@ -693,81 +696,56 @@ module Cfu(cmd_ready, cmd_payload_function_id, cmd_payload_inputs_0, cmd_payload
     endcase
   end
   assign rst = reset;
-  assign \funct7$37  = funct7;
+  assign \funct7$36  = funct7;
   assign fallback7_in1 = cmd_payload_inputs_1;
   assign fallback7_in0 = cmd_payload_inputs_0;
-  assign \funct7$36  = funct7;
+  assign \funct7$35  = funct7;
   assign fallback6_in1 = cmd_payload_inputs_1;
   assign fallback6_in0 = cmd_payload_inputs_0;
-  assign \funct7$35  = funct7;
+  assign \funct7$34  = funct7;
   assign fallback5_in1 = cmd_payload_inputs_1;
   assign fallback5_in0 = cmd_payload_inputs_0;
-  assign \funct7$34  = funct7;
+  assign \funct7$33  = funct7;
   assign fallback4_in1 = cmd_payload_inputs_1;
   assign fallback4_in0 = cmd_payload_inputs_0;
-  assign \funct7$33  = funct7;
+  assign \funct7$32  = funct7;
   assign fallback3_in1 = cmd_payload_inputs_1;
   assign fallback3_in0 = cmd_payload_inputs_0;
-  assign \funct7$32  = funct7;
+  assign \funct7$31  = funct7;
   assign fallback2_in1 = cmd_payload_inputs_1;
   assign fallback2_in0 = cmd_payload_inputs_0;
-  assign \funct7$31  = funct7;
-  assign fallback1_in1 = cmd_payload_inputs_1;
-  assign fallback1_in0 = cmd_payload_inputs_0;
   assign \funct7$30  = funct7;
+  assign fn1_in1 = cmd_payload_inputs_1;
+  assign fn1_in0 = cmd_payload_inputs_0;
+  assign \funct7$29  = funct7;
   assign fn0_in1 = cmd_payload_inputs_1;
   assign fn0_in0 = cmd_payload_inputs_0;
-  assign \start$28  = \$signal$29 ;
-  assign \$signal$27  = fallback7_done;
-  assign \$signal$26  = fallback7_output;
-  assign \start$24  = \$signal$25 ;
-  assign \$signal$23  = fallback6_done;
-  assign \$signal$22  = fallback6_output;
-  assign \start$20  = \$signal$21 ;
-  assign \$signal$19  = fallback5_done;
-  assign \$signal$18  = fallback5_output;
-  assign \start$16  = \$signal$17 ;
-  assign \$signal$15  = fallback4_done;
-  assign \$signal$14  = fallback4_output;
-  assign \start$12  = \$signal$13 ;
-  assign \$signal$11  = fallback3_done;
-  assign \$signal$10  = fallback3_output;
-  assign \start$8  = \$signal$9 ;
+  assign \start$27  = \$signal$28 ;
+  assign \$signal$26  = fallback7_done;
+  assign \$signal$25  = fallback7_output;
+  assign \start$23  = \$signal$24 ;
+  assign \$signal$22  = fallback6_done;
+  assign \$signal$21  = fallback6_output;
+  assign \start$19  = \$signal$20 ;
+  assign \$signal$18  = fallback5_done;
+  assign \$signal$17  = fallback5_output;
+  assign \start$15  = \$signal$16 ;
+  assign \$signal$14  = fallback4_done;
+  assign \$signal$13  = fallback4_output;
+  assign \start$11  = \$signal$12 ;
+  assign \$signal$10  = fallback3_done;
+  assign \$signal$9  = fallback3_output;
+  assign start = \$signal$8 ;
   assign \$signal$7  = fallback2_done;
   assign \$signal$6  = fallback2_output;
-  assign start = \$signal$5 ;
-  assign \$signal$4  = fallback1_done;
-  assign \$signal$3  = fallback1_output;
+  assign fn1_start = \$signal$5 ;
+  assign \$signal$4  = fn1_done;
+  assign \$signal$3  = fn1_output;
   assign fn0_start = \$signal$2 ;
   assign \$signal$1  = fn0_done;
   assign \$signal  = fn0_output;
   assign funct7 = cmd_payload_function_id[9:3];
   assign funct3 = cmd_payload_function_id[2:0];
-endmodule
-
-(* \amaranth.hierarchy  = "Cfu.fallback1" *)
-(* generator = "Amaranth" *)
-module fallback1(done, in0, in1, \output );
-  (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:53" *)
-  output done;
-  wire done;
-  (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:48" *)
-  input [31:0] in0;
-  wire [31:0] in0;
-  (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:54" *)
-  wire [31:0] in0s;
-  (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:49" *)
-  input [31:0] in1;
-  wire [31:0] in1;
-  (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:55" *)
-  wire [31:0] in1s;
-  (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:51" *)
-  output [31:0] \output ;
-  wire [31:0] \output ;
-  assign in1s = in1;
-  assign in0s = in0;
-  assign done = 1'h1;
-  assign \output  = in0;
 endmodule
 
 (* \amaranth.hierarchy  = "Cfu.fallback2" *)
@@ -924,9 +902,9 @@ endmodule
 (* generator = "Amaranth" *)
 module fn0(done, start, in0, in1, rst, clk, \output );
   reg \$auto$verilog_backend.cc:2097:dump_module$2  = 0;
-  (* src = "/home/dev/CFU-Playground/proj/cpe515final/cfu.py:29" *)
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:12" *)
   wire [32:0] \$1 ;
-  (* src = "/home/dev/CFU-Playground/proj/cpe515final/cfu.py:29" *)
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:12" *)
   wire [32:0] \$2 ;
   (* src = "/home/dev/CFU-Playground/third_party/python/amaranth/amaranth/hdl/ir.py:527" *)
   input clk;
@@ -957,7 +935,7 @@ module fn0(done, start, in0, in1, rst, clk, \output );
   (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:52" *)
   input start;
   wire start;
-  assign \$2  = in0 + (* src = "/home/dev/CFU-Playground/proj/cpe515final/cfu.py:29" *) in1;
+  assign \$2  = in0 + (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:12" *) in1;
   always @(posedge clk)
     \output  <= \output$next ;
   always @(posedge clk)
@@ -965,9 +943,9 @@ module fn0(done, start, in0, in1, rst, clk, \output );
   always @* begin
     if (\$auto$verilog_backend.cc:2097:dump_module$2 ) begin end
     \output$next  = \output ;
-    (* src = "/home/dev/CFU-Playground/proj/cpe515final/cfu.py:28" *)
+    (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:10" *)
     casez (start)
-      /* src = "/home/dev/CFU-Playground/proj/cpe515final/cfu.py:28" */
+      /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:10" */
       1'h1:
           \output$next  = \$2 [31:0];
     endcase
@@ -980,12 +958,12 @@ module fn0(done, start, in0, in1, rst, clk, \output );
   always @* begin
     if (\$auto$verilog_backend.cc:2097:dump_module$2 ) begin end
     (* full_case = 32'd1 *)
-    (* src = "/home/dev/CFU-Playground/proj/cpe515final/cfu.py:28" *)
+    (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:10" *)
     casez (start)
-      /* src = "/home/dev/CFU-Playground/proj/cpe515final/cfu.py:28" */
+      /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:10" */
       1'h1:
           \done$next  = 1'h1;
-      /* src = "/home/dev/CFU-Playground/proj/cpe515final/cfu.py:31" */
+      /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:15" */
       default:
           \done$next  = 1'h0;
     endcase
@@ -998,4 +976,111 @@ module fn0(done, start, in0, in1, rst, clk, \output );
   assign \$1  = \$2 ;
   assign in1s = in1;
   assign in0s = in0;
+endmodule
+
+(* \amaranth.hierarchy  = "Cfu.fn1" *)
+(* generator = "Amaranth" *)
+module fn1(done, start, in0, in1, rst, clk, \output );
+  reg \$auto$verilog_backend.cc:2097:dump_module$3  = 0;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:35" *)
+  wire [31:0] \$1 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:36" *)
+  wire [31:0] \$3 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:37" *)
+  wire [32:0] \$5 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:37" *)
+  wire [32:0] \$6 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:21" *)
+  wire [15:0] a0;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:22" *)
+  wire [15:0] a1;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:23" *)
+  wire [15:0] b0;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:24" *)
+  wire [15:0] b1;
+  (* src = "/home/dev/CFU-Playground/third_party/python/amaranth/amaranth/hdl/ir.py:527" *)
+  input clk;
+  wire clk;
+  (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:53" *)
+  output done;
+  reg done = 1'h0;
+  (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:53" *)
+  reg \done$next ;
+  (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:48" *)
+  input [31:0] in0;
+  wire [31:0] in0;
+  (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:54" *)
+  wire [31:0] in0s;
+  (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:49" *)
+  input [31:0] in1;
+  wire [31:0] in1;
+  (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:55" *)
+  wire [31:0] in1s;
+  (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:51" *)
+  output [31:0] \output ;
+  reg [31:0] \output  = 32'd0;
+  (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:51" *)
+  reg [31:0] \output$next ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:26" *)
+  wire [31:0] p0;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:27" *)
+  wire [31:0] p1;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:28" *)
+  wire [31:0] result;
+  (* src = "/home/dev/CFU-Playground/third_party/python/amaranth/amaranth/hdl/ir.py:527" *)
+  input rst;
+  wire rst;
+  (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:52" *)
+  input start;
+  wire start;
+  assign \$1  = $signed(a0) * (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:35" *) $signed(b0);
+  assign \$3  = $signed(a1) * (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:36" *) $signed(b1);
+  assign \$6  = $signed(p0) + (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:37" *) $signed(p1);
+  always @(posedge clk)
+    \output  <= \output$next ;
+  always @(posedge clk)
+    done <= \done$next ;
+  always @* begin
+    if (\$auto$verilog_backend.cc:2097:dump_module$3 ) begin end
+    \output$next  = \output ;
+    (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:40" *)
+    casez (start)
+      /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:40" */
+      1'h1:
+          \output$next  = result;
+    endcase
+    (* src = "/home/dev/CFU-Playground/third_party/python/amaranth/amaranth/hdl/xfrm.py:519" *)
+    casez (rst)
+      1'h1:
+          \output$next  = 32'd0;
+    endcase
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2097:dump_module$3 ) begin end
+    (* full_case = 32'd1 *)
+    (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:40" *)
+    casez (start)
+      /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:40" */
+      1'h1:
+          \done$next  = 1'h1;
+      /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:45" */
+      default:
+          \done$next  = 1'h0;
+    endcase
+    (* src = "/home/dev/CFU-Playground/third_party/python/amaranth/amaranth/hdl/xfrm.py:519" *)
+    casez (rst)
+      1'h1:
+          \done$next  = 1'h0;
+    endcase
+  end
+  assign \$5  = \$6 ;
+  assign in1s = in1;
+  assign in0s = in0;
+  assign result = \$6 [31:0];
+  assign p1 = \$3 ;
+  assign p0 = \$1 ;
+  assign b1 = in1[31:16];
+  assign b0 = in1[15:0];
+  assign a1 = in0[31:16];
+  assign a0 = in0[15:0];
 endmodule

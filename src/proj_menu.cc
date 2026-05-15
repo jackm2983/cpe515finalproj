@@ -182,9 +182,9 @@ struct Menu MENU = {
     {
         MENU_ITEM('0', "exercise cfu op0 (add)",     do_exercise_cfu_op0),
         MENU_ITEM('1', "exercise cfu op1 (mac16)",   do_exercise_cfu_op1),
-        MENU_ITEM('s', "scalar FIR baseline",        do_fir_scalar),
-        MENU_ITEM('c', "CFU FIR (mac16)",            do_fir_cfu),
-        MENU_ITEM('b', "run both, compare cycles",   do_fir_compare),
+        MENU_ITEM('2', "scalar FIR baseline",        do_fir_scalar),
+        MENU_ITEM('3', "CFU FIR (mac16)",            do_fir_cfu),
+        MENU_ITEM('4', "run both, compare cycles",   do_fir_compare),
         MENU_ITEM('h', "say Hello",                  do_hello_world),
         MENU_END,
     },
