@@ -135,6 +135,8 @@ module Cfu(cmd_ready, cmd_payload_function_id, cmd_payload_inputs_0, cmd_payload
   wire fn0_start;
   (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:53" *)
   wire fn1_done;
+  (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:50" *)
+  wire [6:0] fn1_funct7;
   (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:48" *)
   wire [31:0] fn1_in0;
   (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:49" *)
@@ -165,8 +167,6 @@ module Cfu(cmd_ready, cmd_payload_function_id, cmd_payload_inputs_0, cmd_payload
   wire [6:0] \funct7$34 ;
   (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:50" *)
   wire [6:0] \funct7$35 ;
-  (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:50" *)
-  wire [6:0] \funct7$36 ;
   (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:192" *)
   input [31:0] port0_addr;
   wire [31:0] port0_addr;
@@ -280,6 +280,7 @@ module Cfu(cmd_ready, cmd_payload_function_id, cmd_payload_inputs_0, cmd_payload
   fn1 fn1 (
     .clk(clk),
     .done(fn1_done),
+    .funct7(fn1_funct7),
     .in0(fn1_in0),
     .in1(fn1_in1),
     .\output (fn1_output),
@@ -696,25 +697,25 @@ module Cfu(cmd_ready, cmd_payload_function_id, cmd_payload_inputs_0, cmd_payload
     endcase
   end
   assign rst = reset;
-  assign \funct7$36  = funct7;
+  assign \funct7$35  = funct7;
   assign fallback7_in1 = cmd_payload_inputs_1;
   assign fallback7_in0 = cmd_payload_inputs_0;
-  assign \funct7$35  = funct7;
+  assign \funct7$34  = funct7;
   assign fallback6_in1 = cmd_payload_inputs_1;
   assign fallback6_in0 = cmd_payload_inputs_0;
-  assign \funct7$34  = funct7;
+  assign \funct7$33  = funct7;
   assign fallback5_in1 = cmd_payload_inputs_1;
   assign fallback5_in0 = cmd_payload_inputs_0;
-  assign \funct7$33  = funct7;
+  assign \funct7$32  = funct7;
   assign fallback4_in1 = cmd_payload_inputs_1;
   assign fallback4_in0 = cmd_payload_inputs_0;
-  assign \funct7$32  = funct7;
+  assign \funct7$31  = funct7;
   assign fallback3_in1 = cmd_payload_inputs_1;
   assign fallback3_in0 = cmd_payload_inputs_0;
-  assign \funct7$31  = funct7;
+  assign \funct7$30  = funct7;
   assign fallback2_in1 = cmd_payload_inputs_1;
   assign fallback2_in0 = cmd_payload_inputs_0;
-  assign \funct7$30  = funct7;
+  assign fn1_funct7 = funct7;
   assign fn1_in1 = cmd_payload_inputs_1;
   assign fn1_in0 = cmd_payload_inputs_0;
   assign \funct7$29  = funct7;
@@ -902,9 +903,9 @@ endmodule
 (* generator = "Amaranth" *)
 module fn0(done, start, in0, in1, rst, clk, \output );
   reg \$auto$verilog_backend.cc:2097:dump_module$2  = 0;
-  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:12" *)
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:76" *)
   wire [32:0] \$1 ;
-  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:12" *)
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:76" *)
   wire [32:0] \$2 ;
   (* src = "/home/dev/CFU-Playground/third_party/python/amaranth/amaranth/hdl/ir.py:527" *)
   input clk;
@@ -935,7 +936,7 @@ module fn0(done, start, in0, in1, rst, clk, \output );
   (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:52" *)
   input start;
   wire start;
-  assign \$2  = in0 + (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:12" *) in1;
+  assign \$2  = in0 + (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:76" *) in1;
   always @(posedge clk)
     \output  <= \output$next ;
   always @(posedge clk)
@@ -943,9 +944,9 @@ module fn0(done, start, in0, in1, rst, clk, \output );
   always @* begin
     if (\$auto$verilog_backend.cc:2097:dump_module$2 ) begin end
     \output$next  = \output ;
-    (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:10" *)
+    (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:74" *)
     casez (start)
-      /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:10" */
+      /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:74" */
       1'h1:
           \output$next  = \$2 [31:0];
     endcase
@@ -958,12 +959,12 @@ module fn0(done, start, in0, in1, rst, clk, \output );
   always @* begin
     if (\$auto$verilog_backend.cc:2097:dump_module$2 ) begin end
     (* full_case = 32'd1 *)
-    (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:10" *)
+    (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:74" *)
     casez (start)
-      /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:10" */
+      /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:74" */
       1'h1:
           \done$next  = 1'h1;
-      /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:15" */
+      /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:79" */
       default:
           \done$next  = 1'h0;
     endcase
@@ -980,24 +981,122 @@ endmodule
 
 (* \amaranth.hierarchy  = "Cfu.fn1" *)
 (* generator = "Amaranth" *)
-module fn1(done, start, in0, in1, rst, clk, \output );
+module fn1(done, start, in0, in1, funct7, rst, clk, \output );
   reg \$auto$verilog_backend.cc:2097:dump_module$3  = 0;
-  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:35" *)
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:44" *)
   wire [31:0] \$1 ;
-  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:36" *)
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:64" *)
+  wire [31:0] \$13 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:65" *)
+  wire [31:0] \$16 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:66" *)
+  wire [32:0] \$19 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:66" *)
+  wire [32:0] \$20 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:99" *)
+  wire [32:0] \$22 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:99" *)
+  wire [32:0] \$23 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:45" *)
   wire [31:0] \$3 ;
-  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:37" *)
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:44" *)
+  wire [31:0] \$30 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:45" *)
+  wire [31:0] \$33 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:46" *)
+  wire [32:0] \$36 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:46" *)
+  wire [32:0] \$37 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:44" *)
+  wire [31:0] \$44 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:45" *)
+  wire [31:0] \$47 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:46" *)
   wire [32:0] \$5 ;
-  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:37" *)
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:46" *)
+  wire [32:0] \$50 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:46" *)
+  wire [32:0] \$51 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:104" *)
+  wire [32:0] \$53 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:104" *)
+  wire [32:0] \$54 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:46" *)
   wire [32:0] \$6 ;
-  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:21" *)
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:44" *)
+  wire [31:0] \$61 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:45" *)
+  wire [31:0] \$64 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:46" *)
+  wire [32:0] \$67 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:46" *)
+  wire [32:0] \$68 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:44" *)
+  wire [31:0] \$75 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:45" *)
+  wire [31:0] \$78 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:46" *)
+  wire [32:0] \$81 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:46" *)
+  wire [32:0] \$82 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:116" *)
+  wire [32:0] \$84 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:116" *)
+  wire [32:0] \$85 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:32" *)
   wire [15:0] a0;
-  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:22" *)
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:32" *)
+  wire [15:0] \a0$25 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:32" *)
+  wire [15:0] \a0$39 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:32" *)
+  wire [15:0] \a0$56 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:32" *)
+  wire [15:0] \a0$70 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:52" *)
+  wire [15:0] \a0$8 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:33" *)
   wire [15:0] a1;
-  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:23" *)
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:33" *)
+  wire [15:0] \a1$26 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:33" *)
+  wire [15:0] \a1$40 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:33" *)
+  wire [15:0] \a1$57 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:33" *)
+  wire [15:0] \a1$71 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:53" *)
+  wire [15:0] \a1$9 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:88" *)
+  reg [31:0] acc = 32'd0;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:88" *)
+  reg [31:0] \acc$next ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:98" *)
+  wire [31:0] acc_plus_dot;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:34" *)
   wire [15:0] b0;
-  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:24" *)
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:54" *)
+  wire [15:0] \b0$10 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:34" *)
+  wire [15:0] \b0$27 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:34" *)
+  wire [15:0] \b0$41 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:34" *)
+  wire [15:0] \b0$58 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:34" *)
+  wire [15:0] \b0$72 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:35" *)
   wire [15:0] b1;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:55" *)
+  wire [15:0] \b1$11 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:35" *)
+  wire [15:0] \b1$28 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:35" *)
+  wire [15:0] \b1$42 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:35" *)
+  wire [15:0] \b1$59 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:35" *)
+  wire [15:0] \b1$73 ;
   (* src = "/home/dev/CFU-Playground/third_party/python/amaranth/amaranth/hdl/ir.py:527" *)
   input clk;
   wire clk;
@@ -1006,6 +1105,9 @@ module fn1(done, start, in0, in1, rst, clk, \output );
   reg done = 1'h0;
   (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:53" *)
   reg \done$next ;
+  (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:50" *)
+  input [6:0] funct7;
+  wire [6:0] funct7;
   (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:48" *)
   input [31:0] in0;
   wire [31:0] in0;
@@ -1016,38 +1118,165 @@ module fn1(done, start, in0, in1, rst, clk, \output );
   wire [31:0] in1;
   (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:55" *)
   wire [31:0] in1s;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:103" *)
+  wire [31:0] mac_loaded_out;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:108" *)
+  wire [31:0] new_swin_hi;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:107" *)
+  wire [31:0] new_swin_lo;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:38" *)
+  wire [31:0] out;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:58" *)
+  wire [31:0] \out$18 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:38" *)
+  wire [31:0] \out$35 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:38" *)
+  wire [31:0] \out$49 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:38" *)
+  wire [31:0] \out$66 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:38" *)
+  wire [31:0] \out$80 ;
   (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:51" *)
   output [31:0] \output ;
   reg [31:0] \output  = 32'd0;
   (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:51" *)
   reg [31:0] \output$next ;
-  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:26" *)
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:36" *)
   wire [31:0] p0;
-  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:27" *)
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:56" *)
+  wire [31:0] \p0$12 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:36" *)
+  wire [31:0] \p0$29 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:36" *)
+  wire [31:0] \p0$43 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:36" *)
+  wire [31:0] \p0$60 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:36" *)
+  wire [31:0] \p0$74 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:37" *)
   wire [31:0] p1;
-  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:28" *)
-  wire [31:0] result;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:57" *)
+  wire [31:0] \p1$15 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:37" *)
+  wire [31:0] \p1$32 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:37" *)
+  wire [31:0] \p1$46 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:37" *)
+  wire [31:0] \p1$63 ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:37" *)
+  wire [31:0] \p1$77 ;
   (* src = "/home/dev/CFU-Playground/third_party/python/amaranth/amaranth/hdl/ir.py:527" *)
   input rst;
   wire rst;
   (* src = "/home/dev/CFU-Playground/python/amaranth_cfu/cfu.py:52" *)
   input start;
   wire start;
-  assign \$1  = $signed(a0) * (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:35" *) $signed(b0);
-  assign \$3  = $signed(a1) * (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:36" *) $signed(b1);
-  assign \$6  = $signed(p0) + (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:37" *) $signed(p1);
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:92" *)
+  reg [31:0] swin_hi = 32'd0;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:92" *)
+  reg [31:0] \swin_hi$next ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:91" *)
+  reg [31:0] swin_lo = 32'd0;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:91" *)
+  reg [31:0] \swin_lo$next ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:115" *)
+  wire [31:0] swin_out;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:90" *)
+  reg [31:0] tap_hi = 32'd0;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:90" *)
+  reg [31:0] \tap_hi$next ;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:89" *)
+  reg [31:0] tap_lo = 32'd0;
+  (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:89" *)
+  reg [31:0] \tap_lo$next ;
+  assign \$13  = \a0$8  * (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:64" *) \b0$10 ;
+  assign \$16  = \a1$9  * (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:65" *) \b1$11 ;
+  assign \$1  = $signed(a0) * (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:44" *) $signed(b0);
+  assign \$20  = \p0$12  + (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:66" *) \p1$15 ;
+  assign \$23  = $signed(acc) + (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:99" *) $signed(out);
+  assign \$30  = $signed(\a0$25 ) * (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:44" *) $signed(\b0$27 );
+  assign \$33  = $signed(\a1$26 ) * (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:45" *) $signed(\b1$28 );
+  assign \$37  = $signed(\p0$29 ) + (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:46" *) $signed(\p1$32 );
+  assign \$3  = $signed(a1) * (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:45" *) $signed(b1);
+  assign \$44  = $signed(\a0$39 ) * (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:44" *) $signed(\b0$41 );
+  assign \$47  = $signed(\a1$40 ) * (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:45" *) $signed(\b1$42 );
+  assign \$51  = $signed(\p0$43 ) + (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:46" *) $signed(\p1$46 );
+  assign \$54  = $signed(\out$35 ) + (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:104" *) $signed(\out$49 );
+  assign \$61  = $signed(\a0$56 ) * (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:44" *) $signed(\b0$58 );
+  assign \$64  = $signed(\a1$57 ) * (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:45" *) $signed(\b1$59 );
+  assign \$68  = $signed(\p0$60 ) + (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:46" *) $signed(\p1$63 );
+  assign \$6  = $signed(p0) + (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:46" *) $signed(p1);
+  assign \$75  = $signed(\a0$70 ) * (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:44" *) $signed(\b0$72 );
+  assign \$78  = $signed(\a1$71 ) * (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:45" *) $signed(\b1$73 );
+  assign \$82  = $signed(\p0$74 ) + (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:46" *) $signed(\p1$77 );
+  assign \$85  = $signed(\out$66 ) + (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:116" *) $signed(\out$80 );
+  always @(posedge clk)
+    done <= \done$next ;
   always @(posedge clk)
     \output  <= \output$next ;
   always @(posedge clk)
-    done <= \done$next ;
+    acc <= \acc$next ;
+  always @(posedge clk)
+    tap_lo <= \tap_lo$next ;
+  always @(posedge clk)
+    tap_hi <= \tap_hi$next ;
+  always @(posedge clk)
+    swin_lo <= \swin_lo$next ;
+  always @(posedge clk)
+    swin_hi <= \swin_hi$next ;
+  always @* begin
+    if (\$auto$verilog_backend.cc:2097:dump_module$3 ) begin end
+    \done$next  = 1'h0;
+    (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:120" *)
+    casez (start)
+      /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:120" */
+      1'h1:
+          \done$next  = 1'h1;
+    endcase
+    (* src = "/home/dev/CFU-Playground/third_party/python/amaranth/amaranth/hdl/xfrm.py:519" *)
+    casez (rst)
+      1'h1:
+          \done$next  = 1'h0;
+    endcase
+  end
   always @* begin
     if (\$auto$verilog_backend.cc:2097:dump_module$3 ) begin end
     \output$next  = \output ;
-    (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:40" *)
+    (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:120" *)
     casez (start)
-      /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:40" */
+      /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:120" */
       1'h1:
-          \output$next  = result;
+          (* full_case = 32'd1 *)
+          (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:122" *)
+          casez (funct7)
+            /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:123" */
+            7'h00:
+                \output$next  = out;
+            /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:125" */
+            7'h01:
+                \output$next  = \out$18 ;
+            /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:127" */
+            7'h02:
+                \output$next  = acc_plus_dot;
+            /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:132" */
+            7'h03:
+                \output$next  = acc;
+            /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:137" */
+            7'h04:
+                \output$next  = 32'd0;
+            /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:143" */
+            7'h05:
+                \output$next  = mac_loaded_out;
+            /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:145" */
+            7'h06:
+                \output$next  = swin_out;
+            /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:151" */
+            7'h07:
+                \output$next  = 32'd0;
+            /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:157" */
+            default:
+                \output$next  = 32'd0;
+          endcase
     endcase
     (* src = "/home/dev/CFU-Playground/third_party/python/amaranth/amaranth/hdl/xfrm.py:519" *)
     casez (rst)
@@ -1057,26 +1286,231 @@ module fn1(done, start, in0, in1, rst, clk, \output );
   end
   always @* begin
     if (\$auto$verilog_backend.cc:2097:dump_module$3 ) begin end
-    (* full_case = 32'd1 *)
-    (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:40" *)
+    \acc$next  = acc;
+    (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:120" *)
     casez (start)
-      /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:40" */
+      /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:120" */
       1'h1:
-          \done$next  = 1'h1;
-      /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:45" */
-      default:
-          \done$next  = 1'h0;
+          (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:122" *)
+          casez (funct7)
+            /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:123" */
+            7'h00:
+                /* empty */;
+            /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:125" */
+            7'h01:
+                /* empty */;
+            /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:127" */
+            7'h02:
+                \acc$next  = acc_plus_dot;
+            /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:132" */
+            7'h03:
+                \acc$next  = 32'd0;
+          endcase
     endcase
     (* src = "/home/dev/CFU-Playground/third_party/python/amaranth/amaranth/hdl/xfrm.py:519" *)
     casez (rst)
       1'h1:
-          \done$next  = 1'h0;
+          \acc$next  = 32'd0;
+    endcase
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2097:dump_module$3 ) begin end
+    \tap_lo$next  = tap_lo;
+    (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:120" *)
+    casez (start)
+      /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:120" */
+      1'h1:
+          (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:122" *)
+          casez (funct7)
+            /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:123" */
+            7'h00:
+                /* empty */;
+            /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:125" */
+            7'h01:
+                /* empty */;
+            /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:127" */
+            7'h02:
+                /* empty */;
+            /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:132" */
+            7'h03:
+                /* empty */;
+            /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:137" */
+            7'h04:
+                \tap_lo$next  = in0;
+          endcase
+    endcase
+    (* src = "/home/dev/CFU-Playground/third_party/python/amaranth/amaranth/hdl/xfrm.py:519" *)
+    casez (rst)
+      1'h1:
+          \tap_lo$next  = 32'd0;
+    endcase
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2097:dump_module$3 ) begin end
+    \tap_hi$next  = tap_hi;
+    (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:120" *)
+    casez (start)
+      /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:120" */
+      1'h1:
+          (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:122" *)
+          casez (funct7)
+            /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:123" */
+            7'h00:
+                /* empty */;
+            /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:125" */
+            7'h01:
+                /* empty */;
+            /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:127" */
+            7'h02:
+                /* empty */;
+            /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:132" */
+            7'h03:
+                /* empty */;
+            /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:137" */
+            7'h04:
+                \tap_hi$next  = in1;
+          endcase
+    endcase
+    (* src = "/home/dev/CFU-Playground/third_party/python/amaranth/amaranth/hdl/xfrm.py:519" *)
+    casez (rst)
+      1'h1:
+          \tap_hi$next  = 32'd0;
+    endcase
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2097:dump_module$3 ) begin end
+    \swin_lo$next  = swin_lo;
+    (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:120" *)
+    casez (start)
+      /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:120" */
+      1'h1:
+          (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:122" *)
+          casez (funct7)
+            /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:123" */
+            7'h00:
+                /* empty */;
+            /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:125" */
+            7'h01:
+                /* empty */;
+            /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:127" */
+            7'h02:
+                /* empty */;
+            /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:132" */
+            7'h03:
+                /* empty */;
+            /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:137" */
+            7'h04:
+                /* empty */;
+            /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:143" */
+            7'h05:
+                /* empty */;
+            /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:145" */
+            7'h06:
+                \swin_lo$next  = new_swin_lo;
+            /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:151" */
+            7'h07:
+                \swin_lo$next  = 32'd0;
+          endcase
+    endcase
+    (* src = "/home/dev/CFU-Playground/third_party/python/amaranth/amaranth/hdl/xfrm.py:519" *)
+    casez (rst)
+      1'h1:
+          \swin_lo$next  = 32'd0;
+    endcase
+  end
+  always @* begin
+    if (\$auto$verilog_backend.cc:2097:dump_module$3 ) begin end
+    \swin_hi$next  = swin_hi;
+    (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:120" *)
+    casez (start)
+      /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:120" */
+      1'h1:
+          (* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:122" *)
+          casez (funct7)
+            /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:123" */
+            7'h00:
+                /* empty */;
+            /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:125" */
+            7'h01:
+                /* empty */;
+            /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:127" */
+            7'h02:
+                /* empty */;
+            /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:132" */
+            7'h03:
+                /* empty */;
+            /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:137" */
+            7'h04:
+                /* empty */;
+            /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:143" */
+            7'h05:
+                /* empty */;
+            /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:145" */
+            7'h06:
+                \swin_hi$next  = new_swin_hi;
+            /* src = "/home/dev/CFU-Playground/proj/cpe515finalproj/cfu.py:151" */
+            7'h07:
+                \swin_hi$next  = 32'd0;
+          endcase
+    endcase
+    (* src = "/home/dev/CFU-Playground/third_party/python/amaranth/amaranth/hdl/xfrm.py:519" *)
+    casez (rst)
+      1'h1:
+          \swin_hi$next  = 32'd0;
     endcase
   end
   assign \$5  = \$6 ;
+  assign \$19  = \$20 ;
+  assign \$22  = \$23 ;
+  assign \$36  = \$37 ;
+  assign \$50  = \$51 ;
+  assign \$53  = \$54 ;
+  assign \$67  = \$68 ;
+  assign \$81  = \$82 ;
+  assign \$84  = \$85 ;
   assign in1s = in1;
   assign in0s = in0;
-  assign result = \$6 [31:0];
+  assign swin_out = \$85 [31:0];
+  assign \out$80  = \$82 [31:0];
+  assign \p1$77  = \$78 ;
+  assign \p0$74  = \$75 ;
+  assign \b1$73  = tap_hi[31:16];
+  assign \b0$72  = tap_hi[15:0];
+  assign \a1$71  = new_swin_hi[31:16];
+  assign \a0$70  = new_swin_hi[15:0];
+  assign \out$66  = \$68 [31:0];
+  assign \p1$63  = \$64 ;
+  assign \p0$60  = \$61 ;
+  assign \b1$59  = tap_lo[31:16];
+  assign \b0$58  = tap_lo[15:0];
+  assign \a1$57  = new_swin_lo[31:16];
+  assign \a0$56  = new_swin_lo[15:0];
+  assign new_swin_hi = { swin_hi[15:0], swin_lo[31:16] };
+  assign new_swin_lo = { swin_lo[15:0], in0[15:0] };
+  assign mac_loaded_out = \$54 [31:0];
+  assign \out$49  = \$51 [31:0];
+  assign \p1$46  = \$47 ;
+  assign \p0$43  = \$44 ;
+  assign \b1$42  = tap_hi[31:16];
+  assign \b0$41  = tap_hi[15:0];
+  assign \a1$40  = in1[31:16];
+  assign \a0$39  = in1[15:0];
+  assign \out$35  = \$37 [31:0];
+  assign \p1$32  = \$33 ;
+  assign \p0$29  = \$30 ;
+  assign \b1$28  = tap_lo[31:16];
+  assign \b0$27  = tap_lo[15:0];
+  assign \a1$26  = in0[31:16];
+  assign \a0$25  = in0[15:0];
+  assign acc_plus_dot = \$23 [31:0];
+  assign \out$18  = \$20 [31:0];
+  assign \p1$15  = \$16 ;
+  assign \p0$12  = \$13 ;
+  assign \b1$11  = in1[31:16];
+  assign \b0$10  = in1[15:0];
+  assign \a1$9  = in0[31:16];
+  assign \a0$8  = in0[15:0];
+  assign out = \$6 [31:0];
   assign p1 = \$3 ;
   assign p0 = \$1 ;
   assign b1 = in1[31:16];

@@ -46,5 +46,9 @@ DEFINES += DONUT_DEMO
 sim:
 	make PLATFORM=sim load
 
+.PHONY: analyze
+analyze: 
+	cd analysis && python3 analyze.py log.txt
+
 
 include ../proj.mk
