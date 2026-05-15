@@ -13,6 +13,7 @@ namespace {
 static constexpr int MAX_TAPS = 32;
 static constexpr int MAX_SAMPLES = 256;
 static constexpr int SWEEP_ITERS = 500;
+static constexpr int REPEATS = 3;
 
 static inline uint32_t get_cycles() {
     uint32_t c;
@@ -44,7 +45,6 @@ static void init_buffers(int taps, int num_samples) {
 
 static uint32_t measure_loop_overhead(int taps, int num_samples, int iters) {
     volatile int32_t sink = 0;
-
     uint32_t start = get_cycles();
 
     for (int it = 0; it < iters; it++) {
@@ -53,14 +53,12 @@ static uint32_t measure_loop_overhead(int taps, int num_samples, int iters) {
         }
     }
 
-    uint32_t end = get_cycles();
-    return end - start;
+    return get_cycles() - start;
 }
 
 static uint32_t fir_scalar(int taps, int num_samples, int iters,
                            int32_t* checksum_out) {
     volatile int32_t sink = 0;
-
     uint32_t start = get_cycles();
 
     for (int it = 0; it < iters; it++) {
@@ -75,20 +73,19 @@ static uint32_t fir_scalar(int taps, int num_samples, int iters,
         }
     }
 
-    uint32_t end = get_cycles();
+    uint32_t cycles = get_cycles() - start;
 
     if (checksum_out) {
         *checksum_out = sink;
     }
 
-    return end - start;
+    return cycles;
 }
 
 static uint32_t fir_mac16(int taps, int num_samples, int iters,
                           int32_t* checksum_out) {
     volatile int32_t sink = 0;
     int pairs = taps / 2;
-
     uint32_t start = get_cycles();
 
     for (int it = 0; it < iters; it++) {
@@ -105,20 +102,19 @@ static uint32_t fir_mac16(int taps, int num_samples, int iters,
         }
     }
 
-    uint32_t end = get_cycles();
+    uint32_t cycles = get_cycles() - start;
 
     if (checksum_out) {
         *checksum_out = sink;
     }
 
-    return end - start;
+    return cycles;
 }
 
 static uint32_t fir_mac16_unrolled(int taps, int num_samples, int iters,
                                    int32_t* checksum_out) {
     volatile int32_t sink = 0;
     int pairs = taps / 2;
-
     uint32_t start = get_cycles();
 
     for (int it = 0; it < iters; it++) {
@@ -148,86 +144,111 @@ static uint32_t fir_mac16_unrolled(int taps, int num_samples, int iters,
         }
     }
 
-    uint32_t end = get_cycles();
+    uint32_t cycles = get_cycles() - start;
 
     if (checksum_out) {
         *checksum_out = sink;
     }
 
-    return end - start;
+    return cycles;
 }
 
-static void sweep_row(const char* variant,
-                      int taps,
-                      int N,
-                      uint32_t (*fn)(int, int, int, int32_t*),
-                      int iters) {
-    int32_t cs = 0;
+struct Result {
+    uint32_t net;
+    uint32_t per_x100;
+    int32_t checksum;
+};
 
-    (void)fn(taps, N, 2, &cs);
+static Result run_best(int taps,
+                       int N,
+                       uint32_t (*fn)(int, int, int, int32_t*)) {
+    Result best = {0xffffffffu, 0, 0};
 
-    uint32_t cycles = fn(taps, N, iters, &cs);
-    uint32_t overhead = measure_loop_overhead(taps, N, iters);
-    uint32_t net = (cycles > overhead) ? (cycles - overhead) : 0;
+    for (int r = 0; r < REPEATS; r++) {
+        int32_t cs = 0;
 
-    int outputs = (N - taps + 1) * iters;
+        (void)fn(taps, N, 3, &cs);
 
-    unsigned long per_out_x100 = outputs
-        ? (unsigned long)((uint64_t)net * 100 / (uint64_t)outputs)
+        uint32_t cycles = fn(taps, N, SWEEP_ITERS, &cs);
+        uint32_t overhead = measure_loop_overhead(taps, N, SWEEP_ITERS);
+        uint32_t net = (cycles > overhead) ? (cycles - overhead) : 0;
+
+        int outputs = (N - taps + 1) * SWEEP_ITERS;
+        uint32_t per_x100 = outputs
+            ? (uint32_t)(((uint64_t)net * 100) / (uint64_t)outputs)
+            : 0;
+
+        if (net < best.net) {
+            best.net = net;
+            best.per_x100 = per_x100;
+            best.checksum = cs;
+        }
+    }
+
+    return best;
+}
+
+static void sweep_case(int taps, int N) {
+    init_buffers(taps, N);
+
+    Result scalar = run_best(taps, N, fir_scalar);
+    Result mac16 = run_best(taps, N, fir_mac16);
+    Result unroll2 = run_best(taps, N, fir_mac16_unrolled);
+
+    uint32_t mac_speed_x100 = mac16.per_x100
+        ? (uint32_t)(((uint64_t)scalar.per_x100 * 100) / mac16.per_x100)
         : 0;
 
-    printf("CSV,%s,%d,%d,%d,%lu,%lu,%lu,%lu,%ld\r\n",
-           variant,
-           taps,
-           N,
-           iters,
-           (unsigned long)cycles,
-           (unsigned long)overhead,
-           (unsigned long)net,
-           per_out_x100,
-           (long)cs);
+    uint32_t unroll_speed_x100 = unroll2.per_x100
+        ? (uint32_t)(((uint64_t)scalar.per_x100 * 100) / unroll2.per_x100)
+        : 0;
+
+
+    printf("CSV,scalar,%d,%d,%d,%lu,0,%lu,%lu,%ld\r\n",
+       taps,
+       N,
+       SWEEP_ITERS,
+       (unsigned long)scalar.net,
+       (unsigned long)scalar.net,
+       (unsigned long)scalar.per_x100,
+       (long)scalar.checksum);
+
+    printf("CSV,mac16,%d,%d,%d,%lu,0,%lu,%lu,%ld\r\n",
+        taps,
+        N,
+        SWEEP_ITERS,
+        (unsigned long)mac16.net,
+        (unsigned long)mac16.net,
+        (unsigned long)mac16.per_x100,
+        (long)mac16.checksum);
+
+    printf("CSV,unroll2,%d,%d,%d,%lu,0,%lu,%lu,%ld\r\n",
+        taps,
+        N,
+        SWEEP_ITERS,
+        (unsigned long)unroll2.net,
+        (unsigned long)unroll2.net,
+        (unsigned long)unroll2.per_x100,
+        (long)unroll2.checksum);
 }
 
 void do_sweep_full() {
-    puts("\r\n=== sweep: scalar vs mac16 vs unroll2 ===\r\n");
-    puts("CSV,variant,taps,N,iters,cycles,overhead,net,per_out_x100,checksum\r\n");
+    puts("\r\n=== useful sweep: scalar vs mac16 vs unroll2 ===\r\n");
+    puts("CSV,variant,taps,N,cycles_per_out_x100,speedup_x100,checksum\r\n");
 
     const int taps_list[] = {4, 8, 16, 32};
-    const int Ns[] = {32, 64, 128};
+    const int Ns[] = {64, 128, 256};
 
-    struct Variant {
-        const char* name;
-        uint32_t (*fn)(int, int, int, int32_t*);
-    };
-
-    Variant variants[] = {
-        {"scalar", fir_scalar},
-        {"mac16", fir_mac16},
-        {"unroll2", fir_mac16_unrolled},
-    };
-
-    for (unsigned vi = 0; vi < sizeof(variants) / sizeof(variants[0]); vi++) {
-        for (unsigned ti = 0; ti < sizeof(taps_list) / sizeof(taps_list[0]); ti++) {
+    for (unsigned ti = 0; ti < sizeof(taps_list) / sizeof(taps_list[0]); ti++) {
+        for (unsigned ni = 0; ni < sizeof(Ns) / sizeof(Ns[0]); ni++) {
             int taps = taps_list[ti];
+            int N = Ns[ni];
 
-            if (taps > MAX_TAPS) {
+            if (taps > MAX_TAPS || N > MAX_SAMPLES || N < taps * 2) {
                 continue;
             }
 
-            for (unsigned ni = 0; ni < sizeof(Ns) / sizeof(Ns[0]); ni++) {
-                int N = Ns[ni];
-
-                if (N > MAX_SAMPLES) {
-                    continue;
-                }
-
-                init_buffers(taps, N);
-                sweep_row(variants[vi].name,
-                          taps,
-                          N,
-                          variants[vi].fn,
-                          SWEEP_ITERS);
-            }
+            sweep_case(taps, N);
         }
     }
 
@@ -235,29 +256,43 @@ void do_sweep_full() {
 }
 
 void do_verify() {
-    puts("\r\n=== correctness check: scalar vs mac16 vs unroll2 ===\r\n");
+    puts("\r\n=== correctness check ===\r\n");
+    puts("CSV,variant,taps,N,checksum,pass\r\n");
 
-    int taps = 4;
-    int N = 64;
+    const int taps_list[] = {4, 8, 16, 32};
+    const int Ns[] = {64, 128, 256};
 
-    init_buffers(taps, N);
+    for (unsigned ti = 0; ti < sizeof(taps_list) / sizeof(taps_list[0]); ti++) {
+        for (unsigned ni = 0; ni < sizeof(Ns) / sizeof(Ns[0]); ni++) {
+            int taps = taps_list[ti];
+            int N = Ns[ni];
 
-    int32_t ref = 0;
-    int32_t got = 0;
+            if (taps > MAX_TAPS || N > MAX_SAMPLES || N < taps * 2) {
+                continue;
+            }
 
-    (void)fir_scalar(taps, N, 1, &ref);
+            init_buffers(taps, N);
 
-    (void)fir_mac16(taps, N, 1, &got);
-    printf("mac16   : %s ref=%ld got=%ld\r\n",
-           (got == ref) ? "PASS" : "FAIL",
-           (long)ref,
-           (long)got);
+            int32_t ref = 0;
+            int32_t got = 0;
 
-    (void)fir_mac16_unrolled(taps, N, 1, &got);
-    printf("unroll2 : %s ref=%ld got=%ld\r\n",
-           (got == ref) ? "PASS" : "FAIL",
-           (long)ref,
-           (long)got);
+            (void)fir_scalar(taps, N, 1, &ref);
+
+            (void)fir_mac16(taps, N, 1, &got);
+            printf("CSV,mac16,%d,%d,%ld,%s\r\n",
+                   taps,
+                   N,
+                   (long)got,
+                   (got == ref) ? "PASS" : "FAIL");
+
+            (void)fir_mac16_unrolled(taps, N, 1, &got);
+            printf("CSV,unroll2,%d,%d,%ld,%s\r\n",
+                   taps,
+                   N,
+                   (long)got,
+                   (got == ref) ? "PASS" : "FAIL");
+        }
+    }
 }
 
 void do_mac16_spot_check() {
@@ -281,7 +316,7 @@ struct Menu MENU = {
     {
         MENU_ITEM('v', "verify scalar, mac16, unroll2", do_verify),
         MENU_ITEM('m', "mac16 check", do_mac16_spot_check),
-        MENU_ITEM('f', "sweep scalar vs mac16 vs unroll2", do_sweep_full),
+        MENU_ITEM('f', "useful sweep", do_sweep_full),
         MENU_END,
     },
 };
