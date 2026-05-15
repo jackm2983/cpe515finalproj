@@ -4,6 +4,19 @@ Jack Marshall and Ronnie Sidhu
 ## Instructions
 Clone this repo to the proj directory of CFU Playground.
 
+I added these to my .bashrc file in WSL. You gotta run them for the cfu stuff to work:
+```bash
+runcfu() {
+    cd ~/CFU-Playground || return
+    source env/conda/bin/activate cfu-symbiflow
+    cd ~/CFU-Playground/proj/cpe515finalproj || return
+}
+exitcfu() {
+	conda deactivate
+	cd
+}
+```
+
 To run the simulation, type:
 ```bash
 make sim
