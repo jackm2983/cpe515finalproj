@@ -2,6 +2,8 @@
 Jack Marshall and Ronnie Sidhu
 
 ## Instructions
+Download Google CFU Playground. Run the setup script.
+
 Clone this repo to the proj directory of CFU Playground in WSL.
 
 I added these to my .bashrc file in WSL. You gotta run them for the cfu stuff to work:
