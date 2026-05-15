@@ -1,7 +1,7 @@
 #include "proj_menu.h"
 
-#include <stdio.h>
 #include <stdint.h>
+#include <stdio.h>
 
 #include "cfu.h"
 #include "menu.h"
@@ -17,7 +17,7 @@ static constexpr int REPEATS = 3;
 
 static inline uint32_t get_cycles() {
     uint32_t c;
-    asm volatile ("rdcycle %0" : "=r"(c));
+    asm volatile("rdcycle %0" : "=r"(c));
     return c;
 }
 
@@ -35,7 +35,7 @@ static void init_buffers(int taps, int num_samples) {
     }
 
     for (int i = 0; i < num_samples; i++) {
-        g_samples[i] = (int16_t)(i & 0x7FFF);
+        g_samples[i] = (int16_t)(i & 0x7fff);
     }
 
     for (int p = 0; p < taps / 2; p++) {
@@ -154,15 +154,17 @@ static uint32_t fir_mac16_unrolled(int taps, int num_samples, int iters,
 }
 
 struct Result {
+    uint32_t cycles;
+    uint32_t overhead;
     uint32_t net;
-    uint32_t per_x100;
+    uint32_t per_out_x100;
     int32_t checksum;
 };
 
 static Result run_best(int taps,
                        int N,
                        uint32_t (*fn)(int, int, int, int32_t*)) {
-    Result best = {0xffffffffu, 0, 0};
+    Result best = {0xffffffffu, 0, 0xffffffffu, 0, 0};
 
     for (int r = 0; r < REPEATS; r++) {
         int32_t cs = 0;
@@ -174,18 +176,34 @@ static Result run_best(int taps,
         uint32_t net = (cycles > overhead) ? (cycles - overhead) : 0;
 
         int outputs = (N - taps + 1) * SWEEP_ITERS;
-        uint32_t per_x100 = outputs
+        uint32_t per_out_x100 = outputs
             ? (uint32_t)(((uint64_t)net * 100) / (uint64_t)outputs)
             : 0;
 
         if (net < best.net) {
+            best.cycles = cycles;
+            best.overhead = overhead;
             best.net = net;
-            best.per_x100 = per_x100;
+            best.per_out_x100 = per_out_x100;
             best.checksum = cs;
         }
     }
 
     return best;
+}
+
+static void print_result(const char* variant, int taps, int N,
+                         const Result& result) {
+    printf("CSV,%s,%d,%d,%d,%lu,%lu,%lu,%lu,%ld\r\n",
+           variant,
+           taps,
+           N,
+           SWEEP_ITERS,
+           (unsigned long)result.cycles,
+           (unsigned long)result.overhead,
+           (unsigned long)result.net,
+           (unsigned long)result.per_out_x100,
+           (long)result.checksum);
 }
 
 static void sweep_case(int taps, int N) {
@@ -195,46 +213,14 @@ static void sweep_case(int taps, int N) {
     Result mac16 = run_best(taps, N, fir_mac16);
     Result unroll2 = run_best(taps, N, fir_mac16_unrolled);
 
-    uint32_t mac_speed_x100 = mac16.per_x100
-        ? (uint32_t)(((uint64_t)scalar.per_x100 * 100) / mac16.per_x100)
-        : 0;
-
-    uint32_t unroll_speed_x100 = unroll2.per_x100
-        ? (uint32_t)(((uint64_t)scalar.per_x100 * 100) / unroll2.per_x100)
-        : 0;
-
-
-    printf("CSV,scalar,%d,%d,%d,%lu,0,%lu,%lu,%ld\r\n",
-       taps,
-       N,
-       SWEEP_ITERS,
-       (unsigned long)scalar.net,
-       (unsigned long)scalar.net,
-       (unsigned long)scalar.per_x100,
-       (long)scalar.checksum);
-
-    printf("CSV,mac16,%d,%d,%d,%lu,0,%lu,%lu,%ld\r\n",
-        taps,
-        N,
-        SWEEP_ITERS,
-        (unsigned long)mac16.net,
-        (unsigned long)mac16.net,
-        (unsigned long)mac16.per_x100,
-        (long)mac16.checksum);
-
-    printf("CSV,unroll2,%d,%d,%d,%lu,0,%lu,%lu,%ld\r\n",
-        taps,
-        N,
-        SWEEP_ITERS,
-        (unsigned long)unroll2.net,
-        (unsigned long)unroll2.net,
-        (unsigned long)unroll2.per_x100,
-        (long)unroll2.checksum);
+    print_result("scalar", taps, N, scalar);
+    print_result("mac16", taps, N, mac16);
+    print_result("unroll2", taps, N, unroll2);
 }
 
 void do_sweep_full() {
     puts("\r\n=== useful sweep: scalar vs mac16 vs unroll2 ===\r\n");
-    puts("CSV,variant,taps,N,cycles_per_out_x100,speedup_x100,checksum\r\n");
+    puts("CSV,variant,taps,N,iters,cycles,overhead,net,per_out_x100,checksum\r\n");
 
     const int taps_list[] = {4, 8, 16, 32};
     const int Ns[] = {64, 128, 256};
