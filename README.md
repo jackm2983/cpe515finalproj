@@ -2,7 +2,7 @@
 Jack Marshall and Ronnie Sidhu
 
 ## Instructions
-Clone this repo to the proj directory of CFU Playground.
+Clone this repo to the proj directory of CFU Playground in WSL.
 
 I added these to my .bashrc file in WSL. You gotta run them for the cfu stuff to work:
 ```bash
@@ -22,7 +22,7 @@ To run the simulation, type:
 make sim
 ```
 Go to the menu, click "f" for full sweep.
-Put whatever results you get into the /analysis/log.txt file.
+Copy and paste whatever results you get into the /analysis/log.txt file.
 Make sure you have python installed.
 
 If you don't already have matplotlib, do:
